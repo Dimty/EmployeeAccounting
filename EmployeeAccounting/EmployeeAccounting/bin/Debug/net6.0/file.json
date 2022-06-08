@@ -1,0 +1,9 @@
+{
+  "Id": 0,
+  "FullName": "Takoyto takoytovich",
+  "BirthDay": "1999-08-12T00:00:00",
+  "Gender": 1,
+  "Position": {
+    "AddInfo": "Boss of the gym"
+  }
+}
