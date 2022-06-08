@@ -1,6 +1,6 @@
 namespace MyNamespace
 {
-    public enum Post
+    public enum Position
     {
         Director,
         DepHead,
