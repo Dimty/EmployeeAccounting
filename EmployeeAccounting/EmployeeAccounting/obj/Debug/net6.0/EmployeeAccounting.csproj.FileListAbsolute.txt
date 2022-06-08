@@ -1,0 +1,15 @@
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\bin\Debug\net6.0\EmployeeAccounting.exe
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\bin\Debug\net6.0\EmployeeAccounting.deps.json
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\bin\Debug\net6.0\EmployeeAccounting.runtimeconfig.json
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\bin\Debug\net6.0\EmployeeAccounting.dll
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\bin\Debug\net6.0\EmployeeAccounting.pdb
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.csproj.AssemblyReference.cache
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.AssemblyInfoInputs.cache
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.AssemblyInfo.cs
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.csproj.CoreCompileInputs.cache
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.dll
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\refint\EmployeeAccounting.dll
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.pdb
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\EmployeeAccounting.genruntimeconfig.cache
+C:\Users\bio20\OneDrive\Рабочий стол\GitPraktika\EmployeeAccounting\EmployeeAccounting\EmployeeAccounting\obj\Debug\net6.0\ref\EmployeeAccounting.dll
