@@ -7,18 +7,5 @@ namespace MyNamespace
         {
             _post = Post.Director;
         }
-
-        public override Employee UpPost()
-        {
-            if (_post > Post.Director)
-            {
-                var newEmp = new 
-            }
-        }
-
-        public override string DownPost()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

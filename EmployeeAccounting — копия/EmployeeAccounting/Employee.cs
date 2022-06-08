@@ -1,6 +1,6 @@
 namespace MyNamespace
 {
-    public abstract class Employee
+    public class Employee
     {
         protected int id;
         protected string fullName;
@@ -8,9 +8,6 @@ namespace MyNamespace
         protected bool gender;
         protected string uniqueData;
         protected Post _post;
-
-        public Employee()
-        {}
 
         public Employee(int id, string fullName, DateTime birthDay, bool gender, string uniqueData)
         {
@@ -60,7 +57,7 @@ namespace MyNamespace
             this.uniqueData = employee.uniqueData;
         }
 
-        public abstract Employee UpPost();
-        public abstract Employee DownPost();
     }
+
+    
 }
