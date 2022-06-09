@@ -1,13 +1,14 @@
 namespace MyNamespace
 {
+    [Serializable]
     public class Employee
     {
         public int Id { get; private set; }
         public string FullName{ get; private set; }
         public DateTime BirthDay{ get; private set; }
         public Gender Gender{ get; private set; }
-        public IPosition Position{ get; private set; }
         //private bool _gender; <-i think its better than this ↑
+        public IPosition Position{ get; private set; }
         
         public Employee(int id, string fullName, DateTime birthDay, Gender gender, IPosition position,string? addInfo=null)
         {

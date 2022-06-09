@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MyNamespace
 {
@@ -8,20 +10,24 @@ namespace MyNamespace
     {
         public static void Main(string[] args)
         {
-            EmployeeAPI employeeAPI = new EmployeeAPI();
-            DateTime date = DateTime.Parse("12.08.1999");
-            Console.WriteLine(date.ToString("d"));
-            Console.SetWindowSize(100,20);
+            Display display = new Display(new EmployeeAPI());
+            display.DisplayMainPage(new EmployeeAPI());
 
-            Employee employee = new Employee(0, "Takoyto takoytovich", DateTime.Parse("12.08.1999"), Gender.Male,
-                new Director(), "Boss of the gym");
-                
-            var json = JsonSerializer.Serialize(employee);
-            File.WriteAllText("file.json",json);
-            
         }
 
-        private static void Size(int w, int h,CancellationToken token1)
+        public static void Add()
+        {
+            Console.WriteLine("add");
+        }
+        public static void Remove()
+        {
+            Console.WriteLine("Remove");
+        }public static void Search()
+        {
+            Console.WriteLine("Search");
+        }
+        
+        private static void Size(int w, int h)
         {
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
