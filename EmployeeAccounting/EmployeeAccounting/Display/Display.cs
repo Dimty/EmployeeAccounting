@@ -99,10 +99,7 @@ namespace MyNamespace
             return y-top;
         }
 
-        // protected void PrintManagement()
-        // {
-        //     Console.WriteLine("Movement in the \"↑\",\"↓\",\"Enter\"");
-        // }
+
 
         protected void PrintFirstOutput(out int top, out int y)
         {

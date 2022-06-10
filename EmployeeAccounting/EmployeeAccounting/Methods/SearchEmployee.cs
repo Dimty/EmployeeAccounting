@@ -25,7 +25,7 @@ namespace MyNamespace.Methods
             }
 
             
-            Console.WriteLine("Enter the name of the employee's DEPARTMENT or leave the field empty");
+            Console.WriteLine("Enter the name of the employee's DEPARTMENT or leave the field empty.");
             var dep = Console.ReadLine();
             dep= dep == "" ? null : dep;
             var res = api.Search(valueOfPos,dep);
@@ -35,6 +35,8 @@ namespace MyNamespace.Methods
                 var output =  api.GetEmployeeString(item.Id);
                 Console.WriteLine(output);
             }
+
+            Console.WriteLine();
         }
     }
 }

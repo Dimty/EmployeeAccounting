@@ -10,12 +10,13 @@ namespace MyNamespace
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Movement in the \"↑\",\"↓\",\"Enter\",q-exit");
             EmployeeAPI employeeApi = new EmployeeAPI();
-            employeeApi.Add("AAA AAA AAA", "12.08.99", Gender.Male, Position.Director, "1 man");
-            employeeApi.Add("BBB BBB BBB", "12.08.99", Gender.Male, Position.Director, "2 man");
-            employeeApi.Add("CCC CCC CCC", "12.08.99", Gender.Male, Position.Director, "3 man");
-            employeeApi.Add("DDD DDD DDD", "12.08.99", Gender.Male, Position.Director, "4 man");
-            employeeApi.Add("EEE EEE EEE", "12.08.99", Gender.Male, Position.Director, "5 man");
+            employeeApi.Add("AAA AAA AAA", "01.01.2001", Gender.Male, Position.Director, "The Best");
+            employeeApi.Add("BBB BBB BBB", "02.02.2002", Gender.Female, Position.DepHead, "OOO DOMSTROY");
+            employeeApi.Add("CCC CCC CCC", "03.03.2003", Gender.Male, Position.Controller, "ticket");
+            employeeApi.Add("DDD DDD DDD", "04.04.2004", Gender.Female, Position.Director, "The Best");
+            employeeApi.Add("EEE EEE EEE", "05.05.2005", Gender.Male, Position.Worker, "AAA AAA AAA");
             DisplayMainPage displayMainPage = new DisplayMainPage(employeeApi);
             displayMainPage.DisplayPage();
         }
