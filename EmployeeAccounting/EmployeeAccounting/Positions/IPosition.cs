@@ -1,3 +1,5 @@
+using EmployeeAccounting.Enums;
+
 namespace EmployeeAccounting.Positions
 {
     public interface IPosition

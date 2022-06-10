@@ -1,4 +1,4 @@
-namespace EmployeeAccounting
+namespace EmployeeAccounting.Enums
 {
     public enum Gender
     {

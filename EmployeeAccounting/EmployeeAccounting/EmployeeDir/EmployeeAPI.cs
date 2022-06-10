@@ -1,3 +1,4 @@
+using EmployeeAccounting.Enums;
 using EmployeeAccounting.Positions;
 
 namespace EmployeeAccounting.EmployeeDir

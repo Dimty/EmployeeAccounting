@@ -1,3 +1,5 @@
+using EmployeeAccounting.Enums;
+
 namespace EmployeeAccounting.Positions
 {
     public class Director : IPosition

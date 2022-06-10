@@ -1,5 +1,6 @@
 using EmployeeAccounting.Display;
 using EmployeeAccounting.EmployeeDir;
+using EmployeeAccounting.Enums;
 
 namespace EmployeeAccounting.Methods
 {
