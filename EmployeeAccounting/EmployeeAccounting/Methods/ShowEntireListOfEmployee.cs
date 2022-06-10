@@ -1,27 +1,31 @@
-namespace MyNamespace.Methods
+namespace EmployeeAccounting.Methods
 {
-    public class ShowEntireListOfEmployee:IMethod
+    public class ShowEntireListOfEmployee : IMethod
     {
-        private const string actionString = "Show entire list";
+        private const string ActionString = "Show entire list";
+
         public string GetActionName()
         {
-            return actionString;
+            return ActionString;
         }
-        public void DoAction(EmployeeAPI api)
+
+        public void DoAction(EmployeeApi api)
         {
             Console.WriteLine();
             var list = api.GetFullList();
             foreach (var item in list)
             {
-                string res = string.Empty;
-                res += item.Id + " " +
-                       item.FullName + " " +
-                       item.BirthDay.ToString("d") + " " +
-                       item.Gender + " " +
-                       item.Position + " " +
-                       item.Position.AddInfo;
+                var res = string.Empty;
+                res +=
+                    $"{item.Id} " +
+                    $"{item.FullName} " +
+                    $"{item.BirthDay:d} " +
+                    $"{item.Gender} " +
+                    $"{item.Position} " +
+                    $"{item.Position.AddInfo}";
                 Console.WriteLine(res);
             }
+
             Console.WriteLine();
         }
     }

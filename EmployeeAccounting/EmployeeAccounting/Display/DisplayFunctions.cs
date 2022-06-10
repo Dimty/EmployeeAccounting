@@ -1,18 +1,19 @@
-using MyNamespace.Methods;
+using EmployeeAccounting.Methods;
 
-namespace MyNamespace
+namespace EmployeeAccounting.Display
 {
-    public abstract class DisplayFunctions:Display<IMethod>
+    public abstract class DisplayFunctions : Display<IMethod>
     {
-        protected Dictionary<int, IMethod> _dirAction;
+        protected Dictionary<int, IMethod> DirAction;
 
-        public DisplayFunctions(EmployeeAPI api) : base(api)
+        protected DisplayFunctions(EmployeeApi api) : base(api)
         {
         }
-        public override string DoAction(int i, EmployeeAPI api)
+
+        protected override string? DoAction(int i, EmployeeApi api)
         {
-            ClearScreen();
-            _dirAction[i].DoAction(_api);
+            //ClearScreen();
+            DirAction[i].DoAction(Api);
             return null;
         }
     }

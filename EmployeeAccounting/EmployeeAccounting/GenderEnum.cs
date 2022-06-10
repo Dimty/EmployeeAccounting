@@ -1,4 +1,4 @@
-namespace MyNamespace
+namespace EmployeeAccounting
 {
     public enum Gender
     {

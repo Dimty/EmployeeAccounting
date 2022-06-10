@@ -1,134 +1,112 @@
-using MyNamespace.Methods;
-
-namespace MyNamespace
+namespace EmployeeAccounting.Display
 {
     public abstract class Display<T>
     {
-        private Dictionary<int, T> _dir;
-        protected List<string> _list;
-        protected EmployeeAPI _api;
-        private string? userSelection;
+        protected readonly EmployeeApi Api;
+        protected readonly List<string> List;
+        private string? _userSelection;
 
-        public Display(EmployeeAPI api)
+        protected Display(EmployeeApi api)
         {
             Console.CursorVisible = false;
-            _list = new List<string>();
-            _api = api;
+            List = new List<string>();
+            Api = api;
             InitParams();
         }
 
-        public void InitParams()
-        {
-            InitDir();
-            InitList();
-        }
 
         public void DisplayPage()
         {
             bool loop;
             do
             {
-                //PrintManagement();
-                PrintFirstOutput(out int top, out int y);
-                y = SeletionFromTheMainPage(top, y, out ConsoleKey key);
+                PrintFirstOutput(out var top, out var y);
+                y = SelectionFromTheMainPage(top, y, out var key);
                 loop = SelectionAction(key, y);
             } while (loop);
         }
 
-        protected bool SelectionAction(ConsoleKey key, int i)
+        private bool SelectionAction(ConsoleKey key, int i)
         {
-            if (key == ConsoleKey.Enter)
-            {
-                //_dir[i]?.DoAction(_api);
-                userSelection = DoAction(i,_api);
-                if (userSelection != null) return false;
-                return true;
-            }
-
-            return false;
+            if (key != ConsoleKey.Enter) return false;
+            _userSelection = DoAction(i, Api);
+            if (_userSelection != null) return false;
+            return true;
         }
 
-        public void ClearScreen()
+        protected void ClearScreen()
         {
-            int top = Console.CursorTop;
-            int down = top + _list.Count;
+            var top = Console.CursorTop;
+            var down = top + List.Count;
             Console.CursorLeft = 0;
-            for (int i = 0; i <down; i++)
+            for (var i = 0; i < down; i++)
             {
-                Console.WriteLine("{0,25}"," ");
+                Console.WriteLine("{0,25}", " ");
                 Console.CursorLeft = 0;
             }
+
             Console.CursorTop = top;
         }
+
         public string? GetUserSelection()
         {
-            return userSelection;
+            return _userSelection;
         }
 
-        public abstract string DoAction(int i,EmployeeAPI api);
 
-        protected int SeletionFromTheMainPage(int top, int y, out ConsoleKey key)
+        private int SelectionFromTheMainPage(int top, int y, out ConsoleKey key)
         {
-            int down = Console.CursorTop;
+            var down = Console.CursorTop;
             Console.CursorTop = top;
             while ((key = Console.ReadKey(true).Key) != ConsoleKey.Enter)
             {
-                if (key == ConsoleKey.Q)
-                {
-                    break;
-                }
+                if (key == ConsoleKey.Q) break;
 
                 if (key == ConsoleKey.UpArrow)
                 {
-                    if (y > top)
-                    {
-                        MoveCursorPosition(ref y, top, -1);
-                    }
+                    if (y > top) MoveCursorPosition(ref y, top, -1);
                 }
                 else if (key == ConsoleKey.DownArrow)
                 {
-                    if (y < down - 1)
-                    {
-                        MoveCursorPosition(ref y, top, 1);
-                    }
+                    if (y < down - 1) MoveCursorPosition(ref y, top, 1);
                 }
             }
 
             Console.CursorTop = down;
             Console.CursorLeft = 0;
-            return y-top;
+            return y - top;
         }
 
 
-
-        protected void PrintFirstOutput(out int top, out int y)
+        private void PrintFirstOutput(out int top, out int y)
         {
             top = Console.CursorTop;
             y = top;
-            Console.WriteLine("<" + _list[0] + ">");
-            for (int i = 1; i < _list.Count; i++)
-            {
-                Console.WriteLine(_list[i]);
-            }
+            Console.WriteLine("<" + List[0] + ">");
+            for (var i = 1; i < List.Count; i++) Console.WriteLine(List[i]);
         }
 
-        protected void MoveCursorPosition(ref int pos, int curOffset, int offset)
+        private void MoveCursorPosition(ref int pos, int curOffset, int offset)
         {
             Console.CursorLeft = 0;
             Console.Write("{0,25}", " ");
             Console.CursorLeft = 0;
-            Console.Write(_list[pos - curOffset]);
+            Console.Write(List[pos - curOffset]);
             pos += offset;
             Console.CursorTop = pos;
             Console.Write("{0,25}", " ");
             Console.CursorLeft = 0;
-            Console.Write("<" + _list[pos - curOffset] + ">");
+            Console.Write("<" + List[pos - curOffset] + ">");
         }
 
+        private void InitParams()
+        {
+            InitDir();
+            InitList();
+        }
 
         protected abstract void InitDir();
-
-
-        public abstract void InitList();
+        protected abstract void InitList();
+        protected abstract string? DoAction(int i, EmployeeApi api);
     }
 }

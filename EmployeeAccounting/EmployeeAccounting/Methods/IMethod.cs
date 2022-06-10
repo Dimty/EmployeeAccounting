@@ -1,8 +1,8 @@
-namespace MyNamespace.Methods
+namespace EmployeeAccounting.Methods
 {
     public interface IMethod
     {
         string GetActionName();
-        void DoAction(EmployeeAPI api);
+        void DoAction(EmployeeApi api);
     }
 }

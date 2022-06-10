@@ -1,57 +1,45 @@
-using MyNamespace.Methods;
+using EmployeeAccounting.Positions;
 
-namespace MyNamespace
+namespace EmployeeAccounting
 {
-    public class EmployeeAPI
+    public class EmployeeApi
     {
+        private readonly List<Employee?> _listOfEmployees;
         private Dictionary<Position, Func<IPosition>> _listOfPosition;
-        private List<Employee> _listOfEmployees;
 
-        public EmployeeAPI()
+        public EmployeeApi()
         {
-            _listOfEmployees = new List<Employee>();
+            _listOfPosition = new Dictionary<Position, Func<IPosition>>();
+            _listOfEmployees = new List<Employee?>();
             InitPosition();
         }
 
         private void InitPosition()
         {
-            _listOfPosition = new Dictionary<Position, Func<IPosition>>()
+            _listOfPosition = new Dictionary<Position, Func<IPosition>>
             {
-                {Position.Director, PosDirector},
-                {Position.DepHead, PosDepHead},
-                {Position.Controller, PosController},
-                {Position.Worker, PosWorker},
+                {Position.Director, ContainerPositions.PosDirector},
+                {Position.DepHead, ContainerPositions.PosDepHead},
+                {Position.Controller, ContainerPositions.PosController},
+                {Position.Worker, ContainerPositions.PosWorker}
             };
         }
 
-        private IPosition PosDirector()
-        {
-            return new Director();
-        }
-        private IPosition PosDepHead()
-        {
-            return new DepHead();
-        }
-        private IPosition PosController()
-        {
-            return new Controller();
-        }
-        private IPosition PosWorker()
-        {
-            return new Worker();
-        }
+        
 
-        public string GetEmployeeString(int id)
+        public string? GetEmployeeString(int id)
         {
             if (id > _listOfEmployees.Count || id < 0) return null;
-            return _listOfEmployees[id].Id+" "+
-                   _listOfEmployees[id].FullName +" "+
-                   _listOfEmployees[id].BirthDay +" "+
-                   _listOfEmployees[id].Gender +" "+
-                   _listOfEmployees[id].Position +" "+
-                   _listOfEmployees[id].Position.AddInfo;
+            return
+                $"{_listOfEmployees[id]!.Id} " +
+                $"{_listOfEmployees[id]?.FullName}" +
+                $" {_listOfEmployees[id]!.BirthDay}" +
+                $" {_listOfEmployees[id]!.Gender}  " +
+                $"{_listOfEmployees[id]?.Position} " +
+                $"{_listOfEmployees[id]?.Position.AddInfo}";
         }
-        public Employee GetEmployeeEntity(int id)
+
+        public Employee? GetEmployeeEntity(int id)
         {
             if (id > _listOfEmployees.Count || id < 0) return null;
             return _listOfEmployees[id];
@@ -62,101 +50,89 @@ namespace MyNamespace
             if (id < _listOfEmployees.Count && id >= 0) return true;
             return false;
         }
-        public List<Employee> GetFullList()
+
+        public List<Employee?> GetFullList()
         {
             return _listOfEmployees;
         }
-    
-        public void Add(string fullName,DateTime date,Gender gender,Position position,string addInfo)
+
+        public void Add(string? fullName, DateTime date, Gender gender, Position position, string? addInfo)
         {
             _listOfEmployees.Add(
-                new Employee(_listOfEmployees.Count,fullName,date,gender,_listOfPosition[position].Invoke(),addInfo)
-                );
-        }
-        public void Add(string fullName,string date,Gender gender,Position position,string addInfo)
-        {
-            DateTime res;
-            if(!DateTime.TryParse(date,out res)) res = DateTime.MinValue;
-            _listOfEmployees.Add(
-                new Employee(_listOfEmployees.Count,fullName,res,gender,_listOfPosition[position].Invoke(),addInfo)
+                new Employee(_listOfEmployees.Count, fullName, date, gender, _listOfPosition[position].Invoke(),
+                    addInfo)
             );
         }
-        public void ChangePosition(Position position,int id)
+
+        public void Add(string? fullName, string date, Gender gender, Position position, string? addInfo)
         {
-            var oldInfo = _listOfEmployees[id].Position.AddInfo;
-            _listOfEmployees[id].ChangePosition(_listOfPosition[position].Invoke());
-            _listOfEmployees[id].ChangeAddInfo(oldInfo);
+            if (!DateTime.TryParse(date, out var res)) res = DateTime.MinValue;
+            _listOfEmployees.Add(
+                new Employee(_listOfEmployees.Count, fullName, res, gender, _listOfPosition[position].Invoke(), addInfo)
+            );
         }
+
+        public void ChangePosition(Position position, int id)
+        {
+            var oldInfo = _listOfEmployees[id]?.Position.AddInfo;
+            _listOfEmployees[id]?.ChangePosition(_listOfPosition[position].Invoke());
+            _listOfEmployees[id]?.ChangeAddInfo(oldInfo);
+        }
+
         public void Remove(int id)
         {
             _listOfEmployees[id] = _listOfEmployees.Last();
-            _listOfEmployees[id].ChangeId(id);
-            _listOfEmployees.RemoveAt(_listOfEmployees.Count-1);
+            _listOfEmployees[id]?.ChangeId(id);
+            _listOfEmployees.RemoveAt(_listOfEmployees.Count - 1);
         }
 
-        public void ChangeEmployee(Employee employee)
+        public void ChangeEmployee(Employee? employee)
         {
-            _listOfEmployees[employee.Id] = employee;
+            if (employee != null) _listOfEmployees[employee.Id] = employee;
         }
-        
+
         public List<Employee>? Search(int pos, string? branch)
         {
-            List<Employee> list = new List<Employee>();
+            var list = new List<Employee>();
 
-            if (pos == -1 && branch == null) return null;
+            if (pos == -1 && branch == null) return list;
             if (pos == -1) return SearchBranch(branch);
             if (branch == null) return SearchPos(pos);
             return FullSearch(pos, branch);
-            return list;
         }
 
         private List<Employee>? SearchPos(int pos)
         {
-            var list = new List<Employee>();
+            var list = new List<Employee?>();
 
             foreach (var employee in _listOfEmployees)
-            {
-                if (employee.Position.GetPosition() == (Position) pos)
-                {
+                if (employee != null && employee.Position.GetPosition() == (Position) pos)
                     list.Add(employee);
-                }
-            }
-            
+
             return list;
         }
 
-        private List<Employee> SearchBranch(string branch)
+        private List<Employee>? SearchBranch(string? branch)
         {
-            var list = new List<Employee>();
-            
+            var list = new List<Employee?>();
+
             foreach (var employee in _listOfEmployees)
-            {
-                if (employee.Position.AddInfo==branch)
-                {
+                if (employee?.Position.AddInfo == branch)
                     list.Add(employee);
-                }
-            }
 
             return list;
         }
-        
-        private List<Employee> FullSearch(int pos,string branch)
+
+        private List<Employee>? FullSearch(int pos, string branch)
         {
-            var list = new List<Employee>();
-            
+            var list = new List<Employee?>();
+
             foreach (var employee in _listOfEmployees)
-            {
-                if (employee.Position.GetPosition() == (Position)pos &&
-                    employee.Position.AddInfo==branch )
-                {
+                if (employee.Position.GetPosition() == (Position) pos &&
+                    employee.Position.AddInfo == branch)
                     list.Add(employee);
-                }
-            }
 
             return list;
         }
-
-
-        
     }
 }

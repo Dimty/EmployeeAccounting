@@ -1,19 +1,21 @@
-namespace MyNamespace.Methods
+using EmployeeAccounting.Display;
+
+namespace EmployeeAccounting.Methods
 {
     public class ChangeEmployeeData : IMethod
     {
-        private const string actionString = "Change employeer data";
+        private const string ActionString = "Change employeer data";
 
         public string GetActionName()
         {
-            return actionString;
+            return ActionString;
         }
 
-        public void DoAction(EmployeeAPI api)
+        public void DoAction(EmployeeApi api)
         {
             Console.WriteLine();
             Console.WriteLine("Enter the ID of the employee you want to change");
-            if (!int.TryParse(Console.ReadLine(), out int res))
+            if (!int.TryParse(Console.ReadLine(), out var res))
             {
                 Console.WriteLine("EXCEPTION: invalid value");
                 return;
@@ -24,26 +26,20 @@ namespace MyNamespace.Methods
                 Console.WriteLine();
                 Console.WriteLine("Do you really want to change this record? y/n");
                 Console.WriteLine(api.GetEmployeeString(res));
-                ConsoleKey sel;
                 while (true)
                 {
+                    ConsoleKey sel;
                     if ((sel = Console.ReadKey().Key) == ConsoleKey.Y)
                     {
-                        Console.CursorTop -=1;
+                        Console.CursorTop -= 1;
                         Console.CursorLeft = 0;
                         ChangeUnion(api, res);
                         break;
                     }
-                    else
-                    {
-                        if (sel == ConsoleKey.N)
-                        {
-                            break;
-                            ;
-                        }
 
-                        Console.WriteLine("Invalid value");
-                    }
+                    if (sel == ConsoleKey.N) break;
+
+                    Console.WriteLine("Invalid value");
                 }
             }
             else
@@ -54,22 +50,22 @@ namespace MyNamespace.Methods
             Console.WriteLine();
         }
 
-        private void ChangeUnion(EmployeeAPI api, int res)
+        private void ChangeUnion(EmployeeApi api, int res)
         {
             var emp = api.GetEmployeeEntity(res);
 
-            var newStr = string.Empty;
+            string? newStr;
             if ((newStr = ChangeString("name")) != null) emp.ChangeName(newStr);
-            if ((newStr = ChangeString("Birthdaty")) != null) emp.ChangeDate(DateTime.Parse(newStr));
+            if ((newStr = ChangeString("Birthday")) != null) emp.ChangeDate(DateTime.Parse(newStr));
             if ((newStr = ChangeEnum<Gender>("gender", api)) != null)
-                emp.ChangeGender(Gender.Parse<Gender>(newStr));
+                emp.ChangeGender(Enum.Parse<Gender>(newStr));
             if ((newStr = ChangeEnum<Position>("position", api)) != null)
-                api.ChangePosition(Position.Parse<Position>(newStr),
+                api.ChangePosition(Enum.Parse<Position>(newStr),
                     res); // <- жуткая вещь, но что поделать -_-
             if ((newStr = ChangeString("add info")) != null) emp.ChangeAddInfo(newStr);
         }
 
-        private string ChangeString(string str)
+        private static string? ChangeString(string str)
         {
             Console.WriteLine();
             Console.WriteLine("Do you want to change {0} y/n", str);
@@ -86,9 +82,9 @@ namespace MyNamespace.Methods
             return null;
         }
 
-        private string ChangeEnum<T>(string str, EmployeeAPI api)
+        private static string? ChangeEnum<T>(string str, EmployeeApi api)
         {
-            DisplayingParameters<T> displayingParameters = new DisplayingParameters<T>(api);
+            var displayingParameters = new DisplayingParameters<T>(api);
             Console.WriteLine();
             Console.WriteLine("Do you want to change {0} y/n", str);
             Console.CursorLeft = 0;

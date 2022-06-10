@@ -1,11 +1,10 @@
-namespace MyNamespace
+namespace EmployeeAccounting
 {
     public enum Position
     {
         Director,
         DepHead,
         Controller,
-        Worker,
-        
+        Worker
     }
 }

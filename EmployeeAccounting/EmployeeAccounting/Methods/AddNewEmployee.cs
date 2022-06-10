@@ -1,18 +1,20 @@
-namespace MyNamespace.Methods
+using EmployeeAccounting.Display;
+
+namespace EmployeeAccounting.Methods
 {
     public class AddNewEmployee : IMethod
     {
-        private const string actionString = "Add new employee";
+        private const string ActionString = "Add new employee";
 
         public string GetActionName()
         {
-            return actionString;
+            return ActionString;
         }
 
-        public void DoAction(EmployeeAPI api)
+        public void DoAction(EmployeeApi api)
         {
-            DisplayingParameters<Gender> displayingGender = new DisplayingParameters<Gender>(api);
-            DisplayingParameters<Position> displayingPosition = new DisplayingParameters<Position>(api);
+            var displayingGender = new DisplayingParameters<Gender>(api);
+            var displayingPosition = new DisplayingParameters<Position>(api);
 
             Console.WriteLine("Enter the info of the new employee");
 
@@ -23,9 +25,10 @@ namespace MyNamespace.Methods
             var info = SetAddInfo();
 
             api.Add(name, bd, gender, position, info);
+            Console.WriteLine();
         }
 
-        private string SetAddInfo()
+        private string? SetAddInfo()
         {
             Console.Write("Add info:");
             return Console.ReadLine();
@@ -35,11 +38,11 @@ namespace MyNamespace.Methods
         {
             Console.WriteLine("Position:");
             displayingPosition.DisplayPage();
-            Position.TryParse(displayingPosition.GetUserSelection(), out Position position);
+            Enum.TryParse(displayingPosition.GetUserSelection(), out Position position);
             return position;
         }
 
-        private string SetName()
+        private string? SetName()
         {
             Console.Write("Full name:");
             return Console.ReadLine();
@@ -48,7 +51,7 @@ namespace MyNamespace.Methods
         private DateTime SetBirthDay()
         {
             Console.Write("BirthDay:");
-            DateTime.TryParse(Console.ReadLine(), out DateTime bd);
+            DateTime.TryParse(Console.ReadLine(), out var bd);
             return bd;
         }
 
@@ -56,7 +59,7 @@ namespace MyNamespace.Methods
         {
             Console.WriteLine("Gender:");
             displayingGender.DisplayPage();
-            Gender.TryParse(displayingGender.GetUserSelection(), out Gender gender);
+            Enum.TryParse(displayingGender.GetUserSelection(), out Gender gender);
             return gender;
         }
     }
