@@ -1,3 +1,4 @@
+using EmployeeAccounting.EmployeeDir;
 using EmployeeAccounting.Methods;
 
 namespace EmployeeAccounting.Display

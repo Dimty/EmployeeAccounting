@@ -1,3 +1,5 @@
+using EmployeeAccounting.EmployeeDir;
+
 namespace EmployeeAccounting.Methods
 {
     public class ShowEntireListOfEmployee : IMethod

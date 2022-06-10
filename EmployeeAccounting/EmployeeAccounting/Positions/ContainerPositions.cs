@@ -1,6 +1,4 @@
-using EmployeeAccounting.Positions;
-
-namespace EmployeeAccounting
+namespace EmployeeAccounting.Positions
 {
     public static class ContainerPositions
     {

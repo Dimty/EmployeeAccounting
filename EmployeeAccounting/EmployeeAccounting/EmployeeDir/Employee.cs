@@ -1,6 +1,6 @@
 using EmployeeAccounting.Positions;
 
-namespace EmployeeAccounting
+namespace EmployeeAccounting.EmployeeDir
 {
     public class Employee
     {

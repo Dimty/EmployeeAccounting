@@ -1,3 +1,5 @@
+using EmployeeAccounting.EmployeeDir;
+
 namespace EmployeeAccounting.Display
 {
     public abstract class Display<T>
