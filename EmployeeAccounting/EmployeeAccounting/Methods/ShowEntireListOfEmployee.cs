@@ -16,7 +16,7 @@ namespace MyNamespace.Methods
                 string res = string.Empty;
                 res += item.Id + " " +
                        item.FullName + " " +
-                       item.BirthDay + " " +
+                       item.BirthDay.ToString("d") + " " +
                        item.Gender + " " +
                        item.Position + " " +
                        item.Position.AddInfo;

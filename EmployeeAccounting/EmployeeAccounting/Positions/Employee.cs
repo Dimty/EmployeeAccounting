@@ -14,7 +14,7 @@ namespace MyNamespace
 
         public Dictionary<Position, IPosition> dictPos;
         public Employee(int id, string fullName, DateTime birthDay, Gender gender, IPosition position,
-            string? addInfo = null)
+            string addInfo)
         {
             Id = id;
             FullName = fullName;
@@ -44,7 +44,10 @@ namespace MyNamespace
         {
             this.BirthDay = date;
         }
-
+        public void ChangeGender(Gender gender)
+        {
+            this.Gender = gender;
+        }
         public void ChangePosition(IPosition position)
         {
             this.Position = position;

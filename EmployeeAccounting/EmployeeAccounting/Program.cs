@@ -11,33 +11,35 @@ namespace MyNamespace
         public static void Main(string[] args)
         {
             EmployeeAPI employeeApi = new EmployeeAPI();
-            employeeApi.Add("AAA AAA AAA","12.08.99",Gender.Male,Position.Director,"Top man");
-            employeeApi.Add("BBB BBB BBB","12.08.99",Gender.Male,Position.Director,"Top man");
-            employeeApi.Add("CCC CCC CCC","12.08.99",Gender.Male,Position.Director,"Top man");
-            employeeApi.Add("DDD DDD DDD","12.08.99",Gender.Male,Position.Director,"Top man");
-            employeeApi.Add("EEE EEE EEE","12.08.99",Gender.Male,Position.Director,"Top man");
+            employeeApi.Add("AAA AAA AAA", "12.08.99", Gender.Male, Position.Director, "1 man");
+            employeeApi.Add("BBB BBB BBB", "12.08.99", Gender.Male, Position.Director, "2 man");
+            employeeApi.Add("CCC CCC CCC", "12.08.99", Gender.Male, Position.Director, "3 man");
+            employeeApi.Add("DDD DDD DDD", "12.08.99", Gender.Male, Position.Director, "4 man");
+            employeeApi.Add("EEE EEE EEE", "12.08.99", Gender.Male, Position.Director, "5 man");
             DisplayMainPage displayMainPage = new DisplayMainPage(employeeApi);
             displayMainPage.DisplayPage();
-
         }
 
         public static void Add()
         {
             Console.WriteLine("add");
         }
+
         public static void Remove()
         {
             Console.WriteLine("Remove");
-        }public static void Search()
+        }
+
+        public static void Search()
         {
             Console.WriteLine("Search");
         }
-        
+
         private static void Size(int w, int h)
         {
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
-                        
+
             //Size(12,12,token);
             Thread.Sleep(10000);
             //source.Cancel();
@@ -52,12 +54,12 @@ namespace MyNamespace
                         Console.WindowHeight = defH;
                         Console.WriteLine("CheckH");
                     }
+
                     if (defW > Console.WindowWidth)
                     {
                         Console.WindowWidth = defW;
                         Console.WriteLine("CheckW");
                     }
-                    
                 }
             });
         }
@@ -66,6 +68,7 @@ namespace MyNamespace
 
 
 #region Useful
+
 /*
  
             
@@ -116,4 +119,3 @@ namespace MyNamespace
  */
 
 #endregion
-
