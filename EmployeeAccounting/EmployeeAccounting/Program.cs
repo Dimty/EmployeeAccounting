@@ -10,8 +10,8 @@ namespace MyNamespace
     {
         public static void Main(string[] args)
         {
-            Display display = new Display(new EmployeeAPI());
-            display.DisplayMainPage(new EmployeeAPI());
+            DisplayMainPage displayMainPage = new DisplayMainPage(new EmployeeAPI());
+            displayMainPage.DisplayMainPage();
 
         }
 
