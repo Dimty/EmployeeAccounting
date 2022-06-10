@@ -41,12 +41,25 @@ namespace MyNamespace
             {
                 //_dir[i]?.DoAction(_api);
                 userSelection = DoAction(i,_api);
+                if (userSelection != null) return false;
                 return true;
             }
 
             return false;
         }
 
+        public void ClearScreen()
+        {
+            int top = Console.CursorTop;
+            int down = top + _list.Count;
+            Console.CursorLeft = 0;
+            for (int i = 0; i <down; i++)
+            {
+                Console.WriteLine("{0,25}"," ");
+                Console.CursorLeft = 0;
+            }
+            Console.CursorTop = top;
+        }
         public string? GetUserSelection()
         {
             return userSelection;
@@ -81,7 +94,9 @@ namespace MyNamespace
                 }
             }
 
-            return y;
+            Console.CursorTop = down;
+            Console.CursorLeft = 0;
+            return y-top;
         }
 
         // protected void PrintManagement()

@@ -11,6 +11,7 @@ namespace MyNamespace
         }
         public override string DoAction(int i, EmployeeAPI api)
         {
+            ClearScreen();
             _dirAction[i].DoAction(_api);
             return null;
         }

@@ -10,7 +10,13 @@ namespace MyNamespace
     {
         public static void Main(string[] args)
         {
-            DisplayMainPage displayMainPage = new DisplayMainPage(new EmployeeAPI());
+            EmployeeAPI employeeApi = new EmployeeAPI();
+            employeeApi.Add("AAA AAA AAA","12.08.99",Gender.Male,Position.Director,"Top man");
+            employeeApi.Add("BBB BBB BBB","12.08.99",Gender.Male,Position.Director,"Top man");
+            employeeApi.Add("CCC CCC CCC","12.08.99",Gender.Male,Position.Director,"Top man");
+            employeeApi.Add("DDD DDD DDD","12.08.99",Gender.Male,Position.Director,"Top man");
+            employeeApi.Add("EEE EEE EEE","12.08.99",Gender.Male,Position.Director,"Top man");
+            DisplayMainPage displayMainPage = new DisplayMainPage(employeeApi);
             displayMainPage.DisplayPage();
 
         }

@@ -39,6 +39,14 @@ namespace MyNamespace
                 new Employee(_listOfEmployees.Count,fullName,date,gender,_listOfPosition[position],_listOfPosition[position].AddInfo)
                 );
         }
+        public void Add(string fullName,string date,Gender gender,Position position,string addInfo)
+        {
+            DateTime res;
+            if(!DateTime.TryParse(date,out res)) res = DateTime.MinValue;
+            _listOfEmployees.Add(
+                new Employee(_listOfEmployees.Count,fullName,res,gender,_listOfPosition[position],_listOfPosition[position].AddInfo)
+            );
+        }
 
         public string Remove(int id)
         {

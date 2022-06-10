@@ -9,7 +9,20 @@ namespace MyNamespace.Methods
         }
         public void DoAction(EmployeeAPI api)
         {
-            
+            Console.WriteLine();
+            var list = api.GetFullList();
+            foreach (var item in list)
+            {
+                string res = string.Empty;
+                res += item.Id + " " +
+                       item.FullName + " " +
+                       item.BirthDay + " " +
+                       item.Gender + " " +
+                       item.Position + " " +
+                       item.Position.AddInfo;
+                Console.WriteLine(res);
+            }
+            Console.WriteLine();
         }
     }
 }

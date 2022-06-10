@@ -10,22 +10,22 @@ namespace MyNamespace.Methods
 
         public void DoAction(EmployeeAPI api)
         {
-            DisplayingParameters<Gender> displayingGender = new DisplayTheAddPage<Gender>(api);
-            DisplayingParameters<Position> displayingPosition = new DisplayTheAddPage<Position>(api);
-
+            DisplayingParameters<Gender> displayingGender = new DisplayingParameters<Gender>(api);
+            DisplayingParameters<Position> displayingPosition = new DisplayingParameters<Position>(api);
+            
             Console.WriteLine("Enter the info of the new employee");
             
             Console.Write("Full name:");
             string name=   Console.ReadLine();
             
-            Console.Write("BirthDay");
+            Console.Write("BirthDay:");
             DateTime.TryParse(Console.ReadLine(),out DateTime bd);   
             
-            Console.Write(" Gender:");
+            Console.WriteLine("Gender:");
             displayingGender.DisplayPage();
             Gender.TryParse(displayingGender.GetUserSelection(),out Gender gender);
             
-            Console.Write("Position:");
+            Console.WriteLine("Position:");
             displayingPosition.DisplayPage();
             Position.TryParse(displayingPosition.GetUserSelection(),out Position position);
             
