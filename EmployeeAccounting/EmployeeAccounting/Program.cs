@@ -11,7 +11,7 @@ namespace MyNamespace
         public static void Main(string[] args)
         {
             DisplayMainPage displayMainPage = new DisplayMainPage(new EmployeeAPI());
-            displayMainPage.DisplayMainPage();
+            displayMainPage.DisplayPage();
 
         }
 

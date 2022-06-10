@@ -1,36 +1,36 @@
+using MyNamespace.Methods;
+
 namespace MyNamespace
 {
-    public class DisplayMainPage:Display
+    public class DisplayMainPage:DisplayFunctions
     {
         private FunctionClass _function;
 
         public DisplayMainPage(EmployeeAPI api) : base(api)
         {
-            _function = new FunctionClass(api);
+            
         }
+
+        
 
         protected override void InitDir()
         {
-            _dirAction = new Dictionary<int, Action>()
+            _dirAction = new Dictionary<int, IMethod>()
             {
-                {0, _function.ShowAllList},
-                {1, _function.Add},
-                {2, _function.Remove},
-                {3, _function.Search},
-                {4, _function.Exit},
+                {0, new ShowEntireListOfEmployee()},
+                {1, new AddNewEmployee()},
+                {2, new RemoveAnExistingEmployee()},
+                {3, new ChangeEmployeeData()},
+                {4, new SearchEmployee()},
             };
         }
 
-        protected override void InitList()
+        public override void InitList()
         {
-            _list = new List<string>()
+            foreach (var item in _dirAction)
             {
-                "Show All",
-                "Add new employee",
-                "Remove exist employee",
-                "Search",
-                "Exit"
-            };
+                _list.Add(item.Value.GetActionName());
+            }
         }
     }
 

@@ -33,10 +33,10 @@ namespace MyNamespace
             return _listOfEmployees;
         }
 
-        public void Add(string fullName,DateTime date,Gender gender,IPosition position,string addInfo)
+        public void Add(string fullName,DateTime date,Gender gender,Position position,string addInfo)
         {
             _listOfEmployees.Add(
-                new Employee(_listOfEmployees.Count,fullName,date,gender,position,position.AddInfo)
+                new Employee(_listOfEmployees.Count,fullName,date,gender,_listOfPosition[position],_listOfPosition[position].AddInfo)
                 );
         }
 

@@ -1,45 +1,60 @@
+using MyNamespace.Methods;
+
 namespace MyNamespace
 {
-    public abstract class Display
+    public abstract class Display<T>
     {
+        private Dictionary<int, T> _dir;
         protected List<string> _list;
-        protected Dictionary<int, Action> _dirAction;
         protected EmployeeAPI _api;
+        private string? userSelection;
 
         public Display(EmployeeAPI api)
         {
             Console.CursorVisible = false;
+            _list = new List<string>();
             _api = api;
-            InitList();
-            InitDir();
+            InitParams();
         }
 
-        public void DisplayMainPage()
+        public void InitParams()
+        {
+            InitDir();
+            InitList();
+        }
+
+        public void DisplayPage()
         {
             bool loop;
             do
             {
                 //PrintManagement();
                 PrintFirstOutput(out int top, out int y);
-                y = SeletionFromTheMainPage(top, y,out ConsoleKey key);
-                loop = SelectionAction(key,y);    
+                y = SeletionFromTheMainPage(top, y, out ConsoleKey key);
+                loop = SelectionAction(key, y);
             } while (loop);
-            
         }
 
         protected bool SelectionAction(ConsoleKey key, int i)
         {
             if (key == ConsoleKey.Enter)
             {
-                _dirAction[i]?.Invoke();
+                //_dir[i]?.DoAction(_api);
+                userSelection = DoAction(i,_api);
                 return true;
             }
-            return false;
 
+            return false;
         }
 
+        public string? GetUserSelection()
+        {
+            return userSelection;
+        }
 
-        protected int SeletionFromTheMainPage(int top, int y,out ConsoleKey key)
+        public abstract string DoAction(int i,EmployeeAPI api);
+
+        protected int SeletionFromTheMainPage(int top, int y, out ConsoleKey key)
         {
             int down = Console.CursorTop;
             Console.CursorTop = top;
@@ -102,6 +117,6 @@ namespace MyNamespace
         protected abstract void InitDir();
 
 
-        protected abstract void InitList();
+        public abstract void InitList();
     }
 }
